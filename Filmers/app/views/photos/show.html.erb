@@ -1,0 +1,8 @@
+<h1><%= "#{@photo.title}の詳細" %></h1>
+
+<div><%= image_tag @photo.image %></div>
+<div><%= @photo.title %></div>
+<div><%= @photo.description %></div>
+<div><%= @photo.created_at %></div>
+
+<%= link_to '一覧', photos_path %>
