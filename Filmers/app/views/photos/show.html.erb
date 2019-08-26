@@ -1,8 +1,12 @@
 <h1><%= "#{@photo.title}の詳細" %></h1>
 
-<div><%= image_tag @photo.image %></div>
+<div><%= image_tag @photo.image if @photo.image.attached? %></div>
 <div><%= @photo.title %></div>
 <div><%= @photo.description %></div>
 <div><%= @photo.created_at %></div>
+
+<% if current_user.id == @photo.user_id %>
+  <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: "#{@photo.title}を削除します。本当によろしいですか？" } %>
+<% end %>
 
 <%= link_to '一覧', photos_path %>

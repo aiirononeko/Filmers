@@ -1,0 +1,11 @@
+<h1><%= "#{@user.name}さんのマイページ" %></h1>
+
+<% @photos.each do |photo| %>
+<p><%= photo.title %></p>
+<p><%= image_tag photo.image if photo.image.attached? %></p>
+<p><%= photo.description %></p>
+<%= link_to '詳細をみる', photo_path(photo) %>
+<% end %>
+
+<%= link_to '編集する', edit_user_path(@user) %>
+<%= link_to '退会する', user_path(@user), method: :delete, data: { confirm: "#{@user.name}さんのアカウントを削除します。本当によろしいですか？" } %>

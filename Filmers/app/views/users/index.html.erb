@@ -1,0 +1,9 @@
+<h1>ユーザー一覧（管理者のみ）</h1>
+
+<% @users.each do |user| %>
+<p>
+<%= "ユーザー名: #{user.name}" %>
+<%= "メールアドレス: #{user.email}" %>
+<%= link_to '削除', user_path(user), method: :delete, data: { confirm: '本当によろしいですか？' } %>
+</p>
+<% end %>

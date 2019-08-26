@@ -9,6 +9,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       photo: 個展
+      user: ユーザー
     attributes:
       photo:
         title: 個展名
@@ -16,6 +17,11 @@ ja:
         description: 説明
         created_at: 登録日時
         updated_at: 更新日時
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
   date:
     abbr_day_names:
     - 日
