@@ -1,12 +1,20 @@
-<h1><%= "#{@photo.title}の詳細" %></h1>
+<h1><%= "#{@photo.title}" %></h1>
 
-<div><%= image_tag @photo.image if @photo.image.attached? %></div>
-<div><%= @photo.title %></div>
-<div><%= @photo.description %></div>
-<div><%= @photo.created_at %></div>
+<div class="photo-in-show">
+<%= image_tag @photo.image if @photo.image.attached? %>
+</div>
+<p>
+<%= @photo.description %>
+</p>
+<p>
+<%= @photo.created_at.strftime('%Y年 %m月 %d日') %>
+</p>
 
-<% if current_user.id == @photo.user_id %>
-  <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: "#{@photo.title}を削除します。本当によろしいですか？" } %>
-<% end %>
-
-<%= link_to '一覧', photos_path %>
+<div class="edit-or-delete">
+  <% if current_user %>
+    <% if current_user.id == @photo.user_id %>
+      <%= link_to '編集', edit_photo_path(@photo) %>
+      <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: "#{@photo.title}を削除します。本当によろしいですか？" } %>
+    <% end %>
+  <% end %>
+</div>

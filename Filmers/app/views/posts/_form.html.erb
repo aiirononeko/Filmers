@@ -1,0 +1,7 @@
+<%= form_with model: post, local: true do |f| %>
+  <%= f.label :title, 'タイトル' %>
+  <%= f.text_field :title %>
+  <%= f.label :body, '内容' %>
+  <%= f.text_area :body, rows: 30 %>
+  <%= f.submit '投稿' %>
+<% end %>

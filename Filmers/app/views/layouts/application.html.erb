@@ -14,22 +14,25 @@
       <a href="/">TOP</a>
       
       <% if current_user %>
-        <%= link_to "#{current_user.name}", user_path(current_user) %>
-        <%= link_to 'ログアウト', logout_path, method: :delete %>
+        <%= link_to "#{current_user.name}さん", user_path(current_user), class: 'user' %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'logout' %>
+        <% if current_user.admin? %>
+          <%= link_to 'ユーザー', admin_path %>
+        <% end %>
       <% else %>
-        <%= link_to '新規登録', new_user_path %>
-        <%= link_to 'ログイン', login_path %>
+        <%= link_to '新規登録', new_user_path, class: 'user' %>
+        <%= link_to 'ログイン', login_path, class: 'login' %>
       <% end %>
         <%= link_to '個展一覧', photos_path %>
-        <%= link_to 'ユーザー一覧', users_path %>
+        <%= link_to '記事一覧', posts_path %>
     </header>
 
-      <div class="container">
-        <% if flash[:notice] %>
-          <%= flash[:notice] %>
-        <% end %>
+    <div class="container">
+      <% if flash[:notice] %>
+        <div class="alert"><%= flash[:notice] %></div>
+      <% end %>
 
-        <%= yield %>
-      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -6,16 +6,16 @@
   </ul>
 <% end %>
 
-<%= form_with model: user, locale: true do |f| %>
+<%= form_with model: user, local: true do |f| %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, required: 'required' %>
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, required: 'required' %>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, required: 'required' %>
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: 'required' %>
 
   <%= f.submit '登録' %>
 

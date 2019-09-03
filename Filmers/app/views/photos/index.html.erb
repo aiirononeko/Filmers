@@ -1,11 +1,14 @@
 <h1>個展一覧</h1>
 
-<%= link_to '個展を開催する', new_photo_path %>
+<div class="index-link">
+  <%= link_to '個展を開催する', new_photo_path, class: 'btn' %>
+</div>
 
-<% @photos.each do |photo| %>
-  <div>
-    <%= link_to photo.title, photo_path(photo) %>
+<div class="photo-indexes">
+  <% @photos.each do |photo| %>
+    <div class="photo-index">
     <%= image_tag photo.image if photo.image.attached? %>
-    <%= link_to '編集', edit_photo_path(photo) %>
-  </div>
-<% end %>
+    <p><%= link_to photo.title, photo_path(photo) %></p>
+    </div>
+  <% end %>
+</div>
