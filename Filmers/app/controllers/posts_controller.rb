@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[show edit update destroy]
+
   def index
     @posts = Post.all.order(created_at: :desc)
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new
@@ -22,12 +23,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to posts_path, notice: '記事を編集しました'
     else
@@ -36,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path, notice: "#{@post.title}を削除しました"
   end
@@ -45,5 +42,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

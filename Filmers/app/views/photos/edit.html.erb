@@ -1,3 +1,11 @@
 <h1>個展編集</h1>
 
-<%= render partial: 'form', locals: { photo: @photo } %>
+<%= form_with model: @photo, local: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: 'required' %>
+  <div><%= image_tag @photo.image %></div>
+  <%= f.label :description %>
+  <%= f.text_area :description, rows: 10 %>
+
+  <%= f.submit '投稿' %>
+<% end %>

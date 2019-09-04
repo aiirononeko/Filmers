@@ -1,12 +1,12 @@
 class PhotosController < ApplicationController
   skip_before_action :login_required, only: %i[index show]
+  before_action :set_photo, only: %i[show edit update destroy]
 
   def index
     @photos = Photo.all.order(created_at: :desc)
   end
 
   def show
-    @photo = Photo.find(params[:id])
   end
 
   def new
@@ -24,12 +24,9 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
   end
 
   def update
-    @photo = Photo.find(params[:id])
-
     if @photo.update(photo_params)
       redirect_to photos_path, notice: '個展を編集しました'
     else
@@ -38,8 +35,6 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-
     if current_user.id == @photo.user_id
       @photo.destroy
       redirect_to photos_path, notice: "#{@photo.title}を削除しました"
@@ -52,5 +47,9 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:title, :image, :description)
+  end
+
+  def set_photo
+    @photo = Photo.find(params[:id])
   end
 end
