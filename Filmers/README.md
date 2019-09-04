@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<アプリケーションの概要>
+・フィルムカメラ専門の写真アップロードサイト
 
-Things you may want to cover:
+<アプリケーションの機能一覧>
+・ユーザー登録機能
+・ユーザー認証機能
+・写真アップロード機能、ディスクリプション投稿機能
+・記事投稿機能（adminユーザーのみ）
+・記事閲覧機能（一般ユーザー向け） 
 
-* Ruby version
+<アプリケーション内で使用している技術一覧>
+・DB: PostgreSQL
+・画像アップロードライブラリ: active_strage
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<テストユーザー>
+email: test@example.com
+password: password
