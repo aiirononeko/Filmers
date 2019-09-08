@@ -1,6 +1,6 @@
 class AddUserIdToPhotos < ActiveRecord::Migration[5.2]
   def up
-    execute 'DELETE FROM photos;'
+    # execute 'DELETE FROM photos;'
     add_reference :photos, :user, null: false, index: true
   end
 
