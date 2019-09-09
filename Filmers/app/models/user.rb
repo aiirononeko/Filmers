@@ -6,5 +6,11 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 8 }
 
-  has_many :photos
+  has_many :photos, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :likes_photos, through: :likes, source: :photo
+
+  def already_liked?(photo)
+    self.likes.exists?(photo_id: photo.id)
+  end
 end

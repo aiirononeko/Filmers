@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :login_required, only: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index

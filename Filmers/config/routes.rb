@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#home'
-  resources :photos
+  resources :photos do
+    resources :likes, only: %i[create destroy]
+  end
   resources :users, only: %i[show new create edit update destroy]
   get '/admin', to: 'users#index'
   get '/login', to: 'sessions#new'

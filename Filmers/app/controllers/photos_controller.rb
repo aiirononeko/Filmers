@@ -7,6 +7,7 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @like = Like.new
   end
 
   def new

@@ -1,7 +1,9 @@
 <h1>記事一覧</h1>
 
-<% if current_user.admin? %>
-  <%= link_to '新規投稿', new_post_path, class: 'btn' %>
+<% if current_user %>
+  <% if current_user.admin? %>
+    <%= link_to '新規投稿', new_post_path, class: 'btn' %>
+  <% end %>
 <% end %>
 
 <% @posts.each do |post| %>
