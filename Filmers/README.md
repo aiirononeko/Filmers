@@ -14,6 +14,7 @@
 <アプリケーション内で使用している技術一覧>
 ・DB: PostgreSQL
 ・画像アップロードライブラリ: active_strage
+・デプロイ: Heroku
 
 <テストユーザー>
 email: test@example.com

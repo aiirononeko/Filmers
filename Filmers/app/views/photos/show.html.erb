@@ -27,6 +27,18 @@
 <% end %>
 </p>
 
+<p>コメント一覧
+  <% @comments.each do |comment| %>
+    <p><%= comment.content %><%= link_to '削除', photo_comment_path(comment), method: :delete %></p>
+  <% end %>
+</p>
+
+<%= form_for [@photo, @comment] do |f| %>
+  <%= f.label :content, 'コメント' %>
+  <%= f.text_field :content, rows: 5 %>
+  <%= f.submit '送信' %>
+<% end %>
+
 <div class="edit-or-delete">
   <% if current_user %>
     <% if current_user.id == @photo.user_id %>

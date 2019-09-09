@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :likes_photos, through: :likes, source: :photo
+  has_many :comments, dependent: :destroy
 
   def already_liked?(photo)
     self.likes.exists?(photo_id: photo.id)
