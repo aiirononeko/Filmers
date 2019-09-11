@@ -2,7 +2,7 @@ class Photo < ApplicationRecord
   validates :title, presence: true
   validates :title, length: { maximum: 20 }
 
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :user
 
   has_many :likes, dependent: :destroy

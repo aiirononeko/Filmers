@@ -10,7 +10,11 @@
   <%= f.label :title %>
   <%= f.text_field :title, required: 'required' %>
   <%= f.label :image %>
-  <%= f.file_field :image, required: 'required' %>
+  <%= f.file_field :images, multiple: true, required: 'required' %>
+  <%= f.file_field :images, multiple: true %>
+  <%= f.file_field :images, multiple: true %>
+  <%= f.file_field :images, multiple: true %>
+  <%= f.file_field :images, multiple: true %>
   <%= f.label :description %>
   <%= f.text_area :description, rows: 10 %>
 

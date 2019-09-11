@@ -1,7 +1,11 @@
 <h1><%= "#{@photo.title}" %></h1>
 
 <div class="photo-in-show">
-<%= image_tag @photo.image if @photo.image.attached? %>
+<% if @photo.images.attached? %>
+  <% @photo.images.each do |image| %>
+    <%= image_tag image %> <br>
+  <% end %>
+<% end %>
 </div>
 <p>
 <%= @photo.description %>

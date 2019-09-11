@@ -3,7 +3,11 @@
 <%= form_with model: @photo, local: true do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title, required: 'required' %>
-  <div><%= image_tag @photo.image %></div>
+  <% if photo.images.attached? %>
+    <% photo.images.each do |image| %>
+      <div><%= image_tag image %></div>
+    <% end %>
+  <% end %>
   <%= f.label :description %>
   <%= f.text_area :description, rows: 10 %>
 
