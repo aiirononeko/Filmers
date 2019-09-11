@@ -8,9 +8,7 @@
   <% @photos.each do |photo| %>
     <div class="photo-index">
     <% if photo.images.attached?  %>
-      <% photo.images.each do |image| %>
-        <%= image_tag image %> <br>
-      <% end %>
+      <%= image_tag photo.images.first %>
     <% end %>
     <p><%= link_to photo.title, photo_path(photo) %></p>
     <p>Likes: <%= photo.likes_users.count %></p>
