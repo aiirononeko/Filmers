@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to user_path(current_user), notice: '権限がありません' unless current_user.id == @user.id
+    @photo = Photo.find_by(user_id: params[:id])
 
     @photos = current_user.photos
   end

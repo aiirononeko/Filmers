@@ -1,6 +1,20 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-<p><%= @post.created_at.strftime('%Y年 %m月 %d日') %></p>
+<div class="uk-container uk-width-1-2">
+  <article class="uk-article">
 
-<%= link_to '編集', edit_post_path(@post) %>
-<%= link_to '削除', post_path(@post), method: :delete, data: { confirm: "#{@post.title}を削除します。本当によろしいですか？" } %>
+      <h1 class="uk-article-title uk-text-center uk-margin-medium-top"><%= @post.title %></h1>
+
+      <p class="uk-article-meta uk-text-center">Written by <%= @post.created_at.strftime('%Y-%m-%d') %></p>
+
+      <p class="uk-align-center"><%= @post.body %></p>
+
+      <%= link_to 'Read more articles', posts_path, class: 'uk-button uk-button-text uk-align-center uk-text-center uk-width-1-3' %>
+
+  </article>
+
+  <% if current_user %>
+    <% if current_user.admin? %>
+      <%= link_to '編集', edit_post_path(@post), class: 'uk-link-text uk-align-right' %>
+      <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: "#{@post.title}を削除します。本当によろしいですか？" }, class: 'uk-link-text uk-align-right' %>
+    <% end %>  
+  <% end %>
+</div>

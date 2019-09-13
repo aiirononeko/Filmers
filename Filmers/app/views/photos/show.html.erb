@@ -1,53 +1,88 @@
-<h1><%= "#{@photo.title}" %></h1>
+<div class="uk-container">
+  <h1 class="uk-text-center uk-margin-top"><%= "「#{@photo.title}」 by #{@photo.user.name}" %></h1>
 
-<div class="photo-in-show">
-<% if @photo.images.attached? %>
-  <% @photo.images.each do |image| %>
-    <%= image_tag image %> <br>
+  <div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow>
+
+    <ul class="uk-slideshow-items">
+      <% if @photo.images.attached? %>
+        <% @photo.images.each do |image| %>
+          <li>
+            <%= image_tag image, target: '!.uk-slideshow-items' %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-text-lead" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-text-lead" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+  </div>
+
+  <p class="uk-text-center"><%= @photo.description %></p>
+  <p class="uk-text-center"><%= @photo.created_at.strftime('%Y年 %m月 %d日') %></p>
+  <p class="uk-text-center">LIKE: <%= @photo.likes.count %></p>
+
+  <% if current_user %>
+    <% if current_user.already_liked?(@photo) %>
+      <%= button_to 'UNLIKE..', photo_like_path(@photo), method: :delete, class: 'uk-button uk-button-default uk-align-center' %>
+    <% else %>
+      <%= button_to 'LIKE!', photo_likes_path(@photo), class: 'uk-button uk-button-danger uk-align-center' %>
+    <% end %>
   <% end %>
+
+<% if @comment_find %>
+  <table class="uk-table uk-table-divider">
+    <thead>
+        <tr>
+            <th class="uk-align-center">Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td class="uk-align-center uk-text-center"><%= "#{comment.content} by #{comment.user.name}" %></td>
+          <% if comment.user_id == current_user.id %>
+            <td>
+              <%= link_to '削除', photo_comment_path(comment), method: :delete, class: 'uk-button uk-button-default uk-align-center uk-text-center uk-width-1-4' %>
+            </td>
+          <% else %>
+            <td>
+              <%= link_to '削除', photo_comment_path(comment), method: :delete, class: 'uk-button uk-button-default uk-align-center uk-text-center uk-width-1-5', style: 'display: none;' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <table class="uk-table uk-table-divider">
+    <thead>
+        <tr>
+            <th class="uk-align-center uk-text-center">Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td class="uk-align-center uk-text-center"><%= "#{comment.content} by #{comment.user.name}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</div>
-<p>
-<%= @photo.description %>
-</p>
-<p>
-<%= @photo.created_at.strftime('%Y年 %m月 %d日') %>
-</p>
-<p>いいね件数: 
-<%= @photo.likes.count %>
-</p>
 
-<% if current_user %>
-  <% if current_user.already_liked?(@photo) %>
-    <%= button_to 'いいねを取り消す', photo_like_path(@photo), method: :delete %>
-  <% else %>
-    <%= button_to 'いいね', photo_likes_path(@photo) %>
-  <% end %>
-<% end %>
+  <div class="uk-margin">
+    <%= form_for [@photo, @comment] do |f| %>
+      <%= f.label :content, 'COMMENT', class: 'uk-align-center uk-text-center' %>
+      <%= f.text_field :content, rows: 5, class: 'uk-textarea uk-width-1-2 uk-align-center' %>
+      <%= f.submit '送信', class: 'uk-align-center uk-button uk-button-default' %>
+    <% end %>
+  </div>
 
-<p>いいねした人: 
-<% @photo.likes_users.each do |user| %>
-  <%= "#{user.name}さん" %>
-<% end %>
-</p>
-
-<p>コメント一覧
-  <% @comments.each do |comment| %>
-    <p><%= comment.content %><%= link_to '削除', photo_comment_path(comment), method: :delete %></p>
-  <% end %>
-</p>
-
-<%= form_for [@photo, @comment] do |f| %>
-  <%= f.label :content, 'コメント' %>
-  <%= f.text_field :content, rows: 5 %>
-  <%= f.submit '送信' %>
-<% end %>
-
-<div class="edit-or-delete">
   <% if current_user %>
     <% if current_user.id == @photo.user_id %>
-      <%= link_to '編集', edit_photo_path(@photo) %>
-      <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: "#{@photo.title}を削除します。本当によろしいですか？" } %>
+      <%= link_to '編集', edit_photo_path(@photo), class: 'uk-align-right uk-link-text' %>
+      <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: "#{@photo.title}を削除します。本当によろしいですか？" }, class: 'uk-align-right uk-link-text' %>
     <% end %>
   <% end %>
 </div>

@@ -2,41 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.index-link {
-  display: block;
-  margin-top: 40px;
-  margin-bottom: 50px;
-
-  a {
-    font-weight: bold;
-  }
-}
-
-.photo-indexes {
-  text-align: justify;
-}
-
-.photo-index {
-  display: inline-block;
-  padding: 20px 20px;
-
-  a {
-    font-weight: bold;
-  }
-
-  a:hover {
-    color: blue;
-  }
-}
-
-.photo-in-show {
-  img {
-    width: 600px;
-  }
-}
-
-.edit-or-delete {
-  a:hover {
-    color: blue;
-  }
+img {
+  padding-top: 50px;
 }

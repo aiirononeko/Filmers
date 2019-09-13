@@ -1,5 +1,7 @@
 {
-  "name": "Filmers",
+  "name": "filmers",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "uikit": "^3.2.0"
+  }
 }

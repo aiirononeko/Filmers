@@ -1,17 +1,15 @@
-<h1>個展一覧</h1>
+<div class="uk-container">
+  <h1 class="uk-text-center uk-margin-top">Gallerys</h1>
 
-<div class="index-link">
-  <%= link_to '個展を開催する', new_photo_path, class: 'btn' %>
-</div>
-
-<div class="photo-indexes">
   <% @photos.each do |photo| %>
-    <div class="photo-index">
-    <% if photo.images.attached?  %>
-      <%= image_tag photo.images.first %>
-    <% end %>
-    <p><%= link_to photo.title, photo_path(photo) %></p>
-    <p>Likes: <%= photo.likes_users.count %></p>
+    <div>
+      <% if photo.images.attached?  %>
+        <%= image_tag photo.images.first, class: 'uk-margin-top uk-width-1-2 uk-align-center' %>
+      <% end %>
+      <p class="uk-text-center"><%= link_to photo.title, photo_path(photo), class:'uk-link-heading uk-text-large' %></p>
+      <p class="uk-text-center">Likes: <%= photo.likes_users.count %></p>
     </div>
   <% end %>
+
+  <%= link_to '個展を開催する', new_photo_path, class: 'uk-button uk-button-default uk-align-center uk-text-center uk-width-1-6 uk-text-bolder uk-margin-medium-top uk-margin-large-bottom' %>
 </div>

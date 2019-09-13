@@ -1,7 +1,34 @@
-<%= form_with model: post, local: true do |f| %>
-  <%= f.label :title, 'タイトル' %>
-  <%= f.text_field :title %>
-  <%= f.label :body, '内容' %>
-  <%= f.text_area :body, rows: 30 %>
-  <%= f.submit '投稿' %>
+<% if post.errors.present? %>
+  <ul>
+    <% post.errors.full_messages.each do |message| %>
+      <li class="uk-alert uk-alert-warning"><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<div class="uk-container uk-margin-top">
+  <%= form_with model: post, local: true do |f| %>
+    <fieldset class="uk-fieldset">
+
+      <div class="uk-margin-medium-top">
+          <%= f.label :title, 'タイトル', class: 'uk-align-center uk-text-center' %>
+          <%= f.text_field :title, required: 'required', class: 'uk-input uk-align-center uk-width-1-2' %>
+      </div>
+
+      <div class="uk-margin">
+        <%= f.label :description, '概要', class: 'uk-align-center uk-text-center' %>
+        <%= f.text_area :description, rows: 5, required: 'required', class: 'uk-textarea uk-align-center uk-width-1-2' %>
+      </div>
+
+      <div class="uk-margin">
+          <%= f.label :body, '本文', class: 'uk-align-center uk-text-center' %>
+          <%= f.text_area :body, rows: 30, required: 'required', class: 'uk-textarea uk-align-center uk-width-1-2' %>
+      </div>
+
+      <div class="uk-margin-medium">
+          <%= f.submit '投稿する', class: 'uk-align-center uk-button uk-button-default' %>
+      </div>
+
+    </fieldset>
+  <% end %>
+</div>

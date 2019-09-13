@@ -13,4 +13,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require uikit
+//= require uikit.min
+//= require uikit-icons
+//= require uikit-icons.min
 //= require_tree .

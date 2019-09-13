@@ -1,15 +1,37 @@
-<h1>個展編集</h1>
+<legend class="uk-legend uk-text-center uk-text-lead uk-margin-medium-top">個展を編集</legend>
 
-<%= form_with model: @photo, local: true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, required: 'required' %>
-  <% if photo.images.attached? %>
-    <% photo.images.each do |image| %>
-      <div><%= image_tag image %></div>
+<% if @photo.errors.present? %>
+  <ul>
+    <% @photo.errors.full_messages.each do |message| %>
+      <li class="uk-alert uk-alert-warning"><%= message %></li>
     <% end %>
-  <% end %>
-  <%= f.label :description %>
-  <%= f.text_area :description, rows: 10 %>
-
-  <%= f.submit '投稿' %>
+  </ul>
 <% end %>
+
+<div class="uk-container uk-margin-top">
+  <%= form_with model: @photo, local: true do |f| %>
+    <fieldset class="uk-fieldset">
+
+      <div class="uk-margin-medium-top">
+        <%= f.label :title, class: 'uk-align-center uk-text-center' %>
+        <%= f.text_field :title, required: 'required', class: 'uk-input uk-align-center uk-width-1-4' %>
+      </div>
+
+      <div class="uk-margin">
+        <% @photo.images.each do |image| %>
+          <%= image_tag image, class: 'uk-align-center uk-width-1-3' %>
+        <% end %>
+      </div>
+
+      <div class="uk-margin">
+        <%= f.label :description, class: 'uk-align-center uk-text-center' %>
+        <%= f.text_area :description, rows: 10, class: 'uk-textarea uk-align-center uk-width-1-2 uk-height-small', placeholder: '撮影機材、ロケーション、セッティング etc..'  %>
+      </div>
+
+      <div class="uk-margin-medium">
+        <%= f.submit '編集を完了する', class: 'uk-align-center uk-button uk-button-default' %>
+      </div>
+
+    </fieldset>
+  <% end %>
+</div>

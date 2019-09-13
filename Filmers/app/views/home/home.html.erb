@@ -1,6 +1,31 @@
-<div class="top">
-  <h1>フィルム専用の写真投稿サイト | Filmers(フィルマーズ)</h1>
-  <p>デジタルの時代にも色褪せぬフィルムカメラで、あなたの世界を表現しませんか。</p>
+<div class='uk-background-cover uk-light uk-background-fixed' data-src="<%= asset_path("IMG_8567.JPG") %>" uk-img>
+  <h1 class='uk-heading-primary uk-text-center uk-animation-slide-top-medium'>フィルム専用の写真投稿サイト | Filmers(フィルマーズ)</h1>
+  <p class='uk-h5 uk-text-center uk-animation-slide-top-medium'>デジタルの時代にも色褪せぬフィルムカメラで、あなたの世界を表現しませんか。</p>
+</div>
 
-  <%= link_to '個展をみる', photos_path, class: 'btn' %>
+<div uk-grid style="width: 100%;">
+  <div class="uk-width-1-2"><%= link_to '個展をみる', photos_path, class: 'uk-button uk-button-default uk-align-right uk-margin-top uk-text-bolder' %></div>
+  <div class="uk-width-1-2"><a class="uk-button uk-button-default uk-margin-top uk-text-bolder" href="#target" uk-scroll>CONTACT US</a></div>
+</div>
+
+<div id="target" class="uk-container">
+  <form>
+    <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend uk-text-center">CONTACT US</legend>
+
+        <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="メールアドレス">
+        </div>
+
+        <div class="uk-margin">
+          <textarea class="uk-textarea" rows="5" placeholder="お問い合わせ内容"></textarea>
+        </div>
+
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default uk-align-center">SEND YOUR CONTACT</button>
+        </div>
+
+    </fieldset>
+  </form>
 </div>

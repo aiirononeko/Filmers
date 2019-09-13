@@ -1,22 +1,39 @@
 <% if user.errors.present? %>
   <ul>
     <% user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li class="uk-alert uk-alert-warning"><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 
-<%= form_with model: user, local: true do |f| %>
+<div class="uk-container uk-margin-top">
+  <%= form_with model: user, local: true do |f| %>
+    <fieldset class="uk-fieldset">
 
-  <%= f.label :name %>
-  <%= f.text_field :name, required: 'required' %>
-  <%= f.label :email %>
-  <%= f.text_field :email, required: 'required' %>
-  <%= f.label :password %>
-  <%= f.password_field :password, required: 'required' %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, required: 'required' %>
+      <div class="uk-margin-medium-top">
+          <%= f.label :name, class: 'uk-align-center uk-text-center' %>
+          <%= f.text_field :name, required: 'required', class: 'uk-input uk-align-center uk-width-1-4' %>
+      </div>
 
-  <%= f.submit '登録' %>
+      <div class="uk-margin">
+          <%= f.label :email, 'メールアドレス', class: 'uk-align-center uk-text-center' %>
+          <%= f.text_field :email, required: 'required', class: 'uk-input uk-align-center uk-width-1-4' %>
+      </div>
 
-<% end %>
+      <div class="uk-margin">
+          <%= f.label :password, 'パスワード', class: 'uk-align-center uk-text-center' %>
+          <%= f.password_field :password, required: 'required', class: 'uk-input uk-align-center uk-width-1-4' %>
+      </div>
+
+      <div class="uk-margin">
+          <%= f.label :password_confirmation, class: 'uk-align-center uk-text-center' %>
+          <%= f.password_field :password_confirmation, required: 'required', class: 'uk-input uk-align-center uk-width-1-4' %>
+      </div>
+
+      <div class="uk-margin-medium">
+          <%= f.submit '登録', class: 'uk-align-center uk-button uk-button-default' %>
+      </div>
+
+    </fieldset>
+  <% end %>
+</div>

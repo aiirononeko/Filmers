@@ -1,3 +1,5 @@
-<h1>ユーザー情報編集</h1>
+<legend class="uk-legend uk-text-center uk-text-lead uk-margin-medium-top">ユーザー情報編集</legend>
 
 <%= render partial: 'form', locals: { user: @user } %>
+
+<%= link_to '退会する', user_path(@user), method: :delete, data: { confirm: "#{@user.name}さんのアカウントを削除します。本当によろしいですか？" }, class: 'uk-align-center' %>

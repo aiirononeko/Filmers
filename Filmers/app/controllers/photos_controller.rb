@@ -10,6 +10,7 @@ class PhotosController < ApplicationController
     @like = Like.new
     @comments = @photo.comments
     @comment = Comment.new
+    @comment_find = Comment.find_by(user_id: current_user.id)
   end
 
   def new

@@ -1,19 +1,20 @@
-<h1><%= "#{@user.name}さんのマイページ" %></h1>
+<div class="uk-container">
+  <h1 class="uk-text-center uk-margin-top"><%= "#{@user.name}'s Page" %></h1>
 
-<h2>投稿一覧</h2>
-  <% @photos.each do |photo| %>
-    <p><%= photo.title %></p>
-    <p><%= image_tag photo.image if photo.image.attached? %></p>
-    <p><%= photo.description %></p>
-    <%= link_to '詳細をみる', photo_path(photo) %>
-  <% end %>
+  <h2 class="uk-text-center">投稿一覧</h2>
+    <% @user.photos.each do |photo| %>
+      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo) %></h3>
+      <p class="uk-text-center uk-margin-remove-top"><%= image_tag photo.images.first, class: 'uk-width-1-2 uk-padding-remove-top' if photo.images.attached? %></p>
+      <%= link_to '詳細をみる', photo_path(photo), class: 'uk-align-center uk-text-center' %>
+    <% end %>
 
-<h2>いいねした投稿</h2>
-  <% @user.likes_photos.each do |photo| %>
-    <p><%= photo.title %></p>
-    <p><%= image_tag photo.image if photo.image.attached? %></p>
-    <%= link_to '詳細をみる', photo_path(photo) %>
-  <% end %>
+  <h2 class="uk-text-center">いいねした投稿</h2>
+    <% @user.likes_photos.each do |photo| %>
+      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo) %></h3>
+      <p class="uk-text-center uk-margin-remove-top"><%= image_tag photo.images.first, class: 'uk-width-1-2 uk-padding-remove-top' if photo.images.attached? %></p>
+      <%= link_to '詳細をみる', photo_path(photo), class: 'uk-align-center uk-text-center' %>
+    <% end %>
 
-<%= link_to '編集する', edit_user_path(@user) %>
-<%= link_to '退会する', user_path(@user), method: :delete, data: { confirm: "#{@user.name}さんのアカウントを削除します。本当によろしいですか？" } %>
+  <%= link_to '編集する', edit_user_path(@user), class: 'uk-link-text uk-align-right' %>
+  <%= link_to '退会する', user_path(@user), method: :delete, data: { confirm: "#{@user.name}さんのアカウントを削除します。本当によろしいですか？" }, class: 'uk-link-text uk-align-right' %>
+</div>

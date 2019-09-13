@@ -1,11 +1,23 @@
-<h1>記事一覧</h1>
+<div class="uk-container uk-margin-top">
+  <h1 class="uk-text-center">Articles</h1>
 
-<% if current_user %>
-  <% if current_user.admin? %>
-    <%= link_to '新規投稿', new_post_path, class: 'btn' %>
-  <% end %>
-<% end %>
+  <div class="uk-child-width-1-2@m uk-margin-medium-top" uk-grid>
+    <% @posts.each do |post| %>
+      <div>
+          <div class="uk-card uk-card-default">
+              <%# <div class="uk-card-media-top"> %>
+                  <%# <% if @post.images.attached? %>
+                    <%# <%= image_tag @photo.images.first %>
+                  <%# <% end %>
+              <%# </div> %>
+              <div class="uk-card-body">
+                  <h3 class="uk-card-title"><%= link_to post.title, post_path(post), class: 'uk-link-heading' %></h3>
+                  <p><%= post.description %></p>
+              </div>
 
-<% @posts.each do |post| %>
-  <p><%= link_to post.title, post_path(post) %></p>
-<% end %>
+              <div class="uk-card-footer">
+                <%= link_to 'Read more', post_path(post), class: 'uk-button uk-button-text' %>
+              </div>
+          </div>
+      </div>
+    <% end %>
