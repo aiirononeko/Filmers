@@ -3,16 +3,16 @@
 
   <h2 class="uk-text-center">投稿一覧</h2>
     <% @user.photos.each do |photo| %>
-      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo) %></h3>
+      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo), class: 'uk-link-heading' %></h3>
       <p class="uk-text-center uk-margin-remove-top"><%= image_tag photo.images.first, class: 'uk-width-1-2 uk-padding-remove-top' if photo.images.attached? %></p>
-      <%= link_to '詳細をみる', photo_path(photo), class: 'uk-align-center uk-text-center' %>
+      <%= link_to "「#{photo.title}」の詳細をみる", photo_path(photo), class: 'uk-align-center uk-text-center uk-button uk-button-text uk-width-1-6' %>
     <% end %>
 
   <h2 class="uk-text-center">いいねした投稿</h2>
     <% @user.likes_photos.each do |photo| %>
-      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo) %></h3>
+      <h3 class="uk-text-center"><%= link_to photo.title, photo_path(photo), class: 'uk-link-heading' %></h3>
       <p class="uk-text-center uk-margin-remove-top"><%= image_tag photo.images.first, class: 'uk-width-1-2 uk-padding-remove-top' if photo.images.attached? %></p>
-      <%= link_to '詳細をみる', photo_path(photo), class: 'uk-align-center uk-text-center' %>
+      <%= link_to "「#{photo.title}」の詳細をみる", photo_path(photo), class: 'uk-align-center uk-text-center uk-button uk-button-text uk-width-1-6' %>
     <% end %>
 
   <%= link_to '編集する', edit_user_path(@user), class: 'uk-link-text uk-align-right' %>
